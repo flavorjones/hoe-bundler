@@ -1,28 +1,41 @@
-= hoe_bundler
+# hoe-bundler
 
-* FIX (url)
+* http://github.com/flavorjones/hoe-bundler
 
-== DESCRIPTION:
+## DESCRIPTION:
 
-FIX (describe your package)
+Generate a Gemfile based on a Hoe spec's declared dependencies.
 
-== FEATURES/PROBLEMS:
+## FEATURES/PROBLEMS:
 
-* FIX (list of features or problems)
+Creates a rake task to generate a bundler Gemfile based on your declared hoe dependencies.
 
-== SYNOPSIS:
+* `bundler:gemfile`
 
-  FIX (code sample of usage)
+Why would you want to do this? I mean, why would anyone want to use bundler to test their gem?
 
-== REQUIREMENTS:
+1. to make sure you've declared all your dependencies in your Hoe.spec.
+2. to make sure you're testing against the exact versions of dependencies that you're claiming in your Hoe.spec.
 
-* FIX (list of requirements)
+## SYNOPSIS:
 
-== INSTALL:
+Just add the following line to your Rakefile before you call `Hoe.spec`:
 
-* FIX (sudo gem install, anything else)
+    Hoe.plugin :bundler
 
-== DEVELOPERS:
+And then run the following command to generate a Gemfile:
+
+    rake bundler:gemfile
+
+## REQUIREMENTS:
+
+* hoe >= 2.2.0
+
+## INSTALL:
+
+* gem install hoe-bundler
+
+## DEVELOPERS:
 
 After checking out the source, run:
 
@@ -31,11 +44,11 @@ After checking out the source, run:
 This task will install any missing dependencies, run the tests/specs,
 and generate the RDoc.
 
-== LICENSE:
+## LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2010 FIX
+Copyright (c) 2010 Mike Dalessio
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
