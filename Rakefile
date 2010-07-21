@@ -10,7 +10,7 @@ Hoe.spec 'hoe-bundler' do
 
   self.extra_rdoc_files = FileList["*.rdoc"]
   self.history_file     = "CHANGELOG.rdoc"
-  self.readme_file      = "README.md"
+  self.readme_file      = "README.rdoc"
   self.test_globs       = ["test/test_*.rb"]
 
   extra_deps     << ["hoe", ">=2.2.0"]
