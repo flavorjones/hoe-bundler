@@ -1,0 +1,8 @@
+.autotest
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/fixture_project
+lib/fixture_project.rb
+test/test_fixture_project.rb

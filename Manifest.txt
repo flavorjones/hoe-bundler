@@ -1,0 +1,8 @@
+.autotest
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/hoe_bundler
+lib/hoe_bundler.rb
+test/test_hoe_bundler.rb

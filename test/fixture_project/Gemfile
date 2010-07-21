@@ -1,0 +1,13 @@
+# -*- ruby -*-
+
+source :gemcutter
+
+gem "yyy", ">=0"
+gem "zzz", "<1.5.0"
+
+gem "rubyforge", ">=2.0.4", :group => [:development, :test]
+gem "aaa", ">=0", :group => [:development, :test]
+gem "bbb", ">=2.2.0", :group => [:development, :test]
+gem "hoe", ">=2.6.1", :group => [:development, :test]
+
+# vim: syntax=ruby

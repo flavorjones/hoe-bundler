@@ -1,0 +1,11 @@
+require 'rubygems'
+require 'hoe'
+$: << File.expand_path(File.join(File.dirname(__FILE__),"../../lib"))
+Hoe.plugin :bundler
+Hoe.spec "fixture_project" do
+  developer("MCA","mca@example.com")
+  extra_deps << ["yyy", ">=0"]
+  extra_deps << ["zzz", "< 1.5.0"]
+  extra_dev_deps << ["aaa", ">=0"]
+  extra_dev_deps << ["bbb", ">= 2.2.0"]
+end
