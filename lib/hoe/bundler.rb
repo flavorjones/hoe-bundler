@@ -18,10 +18,12 @@ class Hoe #:nodoc:
           gemfile.puts "source :gemcutter"
           gemfile.puts
           self.extra_deps.each do |name, version|
+            version ||= ">=0"
             gemfile.puts %Q{gem "#{name}", "#{version.gsub(/ /,'')}"}
           end
           gemfile.puts
           self.extra_dev_deps.each do |name, version|
+            version ||= ">=0"
             gemfile.puts %Q{gem "#{name}", "#{version.gsub(/ /,'')}", :group => [:development, :test]}
           end
           gemfile.puts
