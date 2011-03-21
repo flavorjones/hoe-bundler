@@ -1,3 +1,10 @@
+=== 1.1.0 / 2011-03-20
+
+* Enhancements:
+
+  * Warning message ("Do not edit") in the generated Gemfile. (thanks to phiggins)
+  * Infer version ">=0" when people don't specify a version in their Hoe config. (thanks to phiggins)
+
 === 1.0.0 / 2010-07-21
 
 * 1 major enhancement
