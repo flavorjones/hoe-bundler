@@ -5,6 +5,10 @@ require "hoe"
 Hoe.plugin :bundler
 
 class TestHoeBundler < Minitest::Test
+  def teardown
+    system "git checkout -f test/fixture_project/Gemfile"
+  end
+
   def test_output
     gemfile = nil
     Dir.chdir(File.join(File.dirname(__FILE__), "fixture_project")) do
@@ -60,5 +64,55 @@ class TestHoeBundler < Minitest::Test
       assert_equal %Q{gem "foo", ">=0.8", "<12.0"}, lines.grep(/foo/).first
       assert_equal %Q{gem "bar", ">=1.8", "<3.0", :group => [:development, :test]}, lines.grep(/bar/).first
     end
+  end
+
+  def test_source_symbol_option
+    gemfile = nil
+    Dir.chdir(File.join(File.dirname(__FILE__), "fixture_project")) do
+      FileUtils.rm_f "Gemfile"
+      begin
+        system "rake bundler:gemfile[gemcutter]"
+        gemfile = File.read "Gemfile"
+      end
+    end
+    assert_match %r{^source \:gemcutter$}, gemfile
+  end
+
+  def test_source_http_option
+    gemfile = nil
+    Dir.chdir(File.join(File.dirname(__FILE__), "fixture_project")) do
+      FileUtils.rm_f "Gemfile"
+      begin
+        system "rake bundler:gemfile[http://gems.github.com]"
+        gemfile = File.read "Gemfile"
+      end
+    end
+    assert_match %r{^source "http:\/\/gems\.github\.com"$}, gemfile
+  end
+
+  def test_gemspec_option
+    gemfile = nil
+    Dir.chdir(File.join(File.dirname(__FILE__), "fixture_project")) do
+      FileUtils.rm_f "Gemfile"
+      begin
+        system "rake bundler:gemfile[rubygems,true]"
+        gemfile = File.read "Gemfile"
+      end
+    end
+    assert_match %r{^source \:rubygems$}, gemfile
+    assert_match %r{^gemspec$}, gemfile
+  end
+
+  def test_source_http_and_gemspec_option
+    gemfile = nil
+    Dir.chdir(File.join(File.dirname(__FILE__), "fixture_project")) do
+      FileUtils.rm_f "Gemfile"
+      begin
+        system "rake bundler:gemfile[http://gems.github.com,true]"
+        gemfile = File.read "Gemfile"
+      end
+    end
+    assert_match %r{^source "http:\/\/gems\.github\.com"$}, gemfile
+    assert_match %r{^gemspec$}, gemfile
   end
 end
