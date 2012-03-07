@@ -21,7 +21,7 @@ class TestHoeBundler < Test::Unit::TestCase
     assert_match %r{^gem "aaa", ">=0", :group => \[:development, :test\]$}, gemfile
     assert_match %r{^gem "bbb", ">=2.2.0", :group => \[:development, :test\]$}, gemfile
     assert_match %r{^gem "ccc", ">=0", :group => \[:development, :test\]$}, gemfile
-    assert_match %r{^gem "hoe", ">=\d\.\d\.\d", :group => \[:development, :test\]$}, gemfile
+    assert_match %r{^gem "hoe", .* :group => \[:development, :test\]$}, gemfile
     assert_match %r{^# vim: syntax=ruby$}, gemfile
   end
 end
