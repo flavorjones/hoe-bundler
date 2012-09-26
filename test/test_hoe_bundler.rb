@@ -1,6 +1,9 @@
 require "test/unit"
 require "fileutils"
 
+require "hoe"
+Hoe.plugin :bundler
+
 class TestHoeBundler < Test::Unit::TestCase
   def test_output
     gemfile = nil
@@ -23,5 +26,23 @@ class TestHoeBundler < Test::Unit::TestCase
     assert_match %r{^gem "ccc", ">=0", :group => \[:development, :test\]$}, gemfile
     assert_match %r{^gem "hoe", .* :group => \[:development, :test\]$}, gemfile
     assert_match %r{^# vim: syntax=ruby$}, gemfile
+  end
+
+  def test_handles_duplicate_dependencies_like_gemspec
+    Dir.chdir(File.join(File.dirname(__FILE__), "fixture_project")) do
+      hoe = Hoe.spec "foo" do
+        developer("MCA","mca@example.com")
+        extra_deps << ["yyy", ">=0"]
+        extra_deps << ["yyy", ">=1"]
+        extra_dev_deps << ["bbb", ">= 1"]
+        extra_dev_deps << ["bbb", ">= 0"]
+      end
+
+      lines = hoe.hoe_bundler_contents.split("\n")
+      assert_equal 1, lines.grep(/yyy/).length
+      assert_match(/>=0/, lines.grep(/yyy/).first)
+      assert_equal 1, lines.grep(/bbb/).length
+      assert_match(/>=1/, lines.grep(/bbb/).first)
+    end
   end
 end

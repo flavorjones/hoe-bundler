@@ -24,17 +24,28 @@ class Hoe #:nodoc:
       gemfile.puts
       gemfile.puts "source \"https://rubygems.org/\""
       gemfile.puts
+
+      extra_deps = {}
       self.extra_deps.each do |name, version|
         version ||= ">=0"
+        extra_deps[name] = version unless extra_deps.key?(name)
+      end
+      extra_deps.each do |name, version|
         gemfile.puts %Q{gem "#{name}", "#{version.gsub(/ /,'')}"}
       end
       gemfile.puts
+
+      extra_dev_deps = {}
       self.extra_dev_deps.each do |name, version|
         version ||= ">=0"
+        extra_dev_deps[name] = version unless extra_dev_deps.key?(name)
+      end
+      extra_dev_deps.each do |name, version|
         gemfile.puts %Q{gem "#{name}", "#{version.gsub(/ /,'')}", :group => [:development, :test]}
       end
       gemfile.puts
       gemfile.puts "# vim: syntax=ruby"
+
       gemfile.rewind
       gemfile.read
     end
