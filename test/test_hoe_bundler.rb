@@ -45,4 +45,17 @@ class TestHoeBundler < Test::Unit::TestCase
       assert_match(/>=1/, lines.grep(/bbb/).first)
     end
   end
+
+  def test_handles_alternative_declaration
+    Dir.chdir(File.join(File.dirname(__FILE__), "fixture_project")) do
+      hoe = Hoe.spec "foo" do
+        developer "MCA", "mca@example.com"
+        dependency "foo", [">= 0.8", "< 12.0"]
+      end
+
+      lines = hoe.hoe_bundler_contents.split("\n")
+      foo_decl = lines.grep(/foo/).first
+      assert_equal %Q{gem "foo", ">=0.8", "<12.0"}, foo_decl
+    end
+  end
 end
