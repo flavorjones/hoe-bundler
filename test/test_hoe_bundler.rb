@@ -51,11 +51,12 @@ class TestHoeBundler < Test::Unit::TestCase
       hoe = Hoe.spec "foo" do
         developer "MCA", "mca@example.com"
         dependency "foo", [">= 0.8", "< 12.0"]
+        dependency "bar", [">= 1.8", "< 3.0"], :dev
       end
 
       lines = hoe.hoe_bundler_contents.split("\n")
-      foo_decl = lines.grep(/foo/).first
-      assert_equal %Q{gem "foo", ">=0.8", "<12.0"}, foo_decl
+      assert_equal %Q{gem "foo", ">=0.8", "<12.0"}, lines.grep(/foo/).first
+      assert_equal %Q{gem "bar", ">=1.8", "<3.0", :group => [:development, :test]}, lines.grep(/bar/).first
     end
   end
 end

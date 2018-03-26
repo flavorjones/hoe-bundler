@@ -45,7 +45,11 @@ class Hoe #:nodoc:
         extra_dev_deps[name] = version unless extra_dev_deps.key?(name)
       end
       extra_dev_deps.each do |name, version|
-        gemfile.puts %Q{gem "#{name}", "#{version.gsub(/ /,'')}", :group => [:development, :test]}
+        output = [%Q{gem "#{name}"}]
+        Array(version).each do |version|
+          output << %Q{"#{version.gsub(/ /,'')}"}
+        end
+        gemfile.puts %Q{#{output.join(", ")}, :group => [:development, :test]}
       end
       gemfile.puts
       gemfile.puts "# vim: syntax=ruby"
