@@ -5,7 +5,7 @@ class Hoe #:nodoc:
   #  * <tt>bundler:gemfile</tt>
   #
   module Bundler
-    VERSION = "1.3.0" #:nodoc:
+    VERSION = "1.4.0" #:nodoc:
 
     def define_bundler_tasks
       desc "generate a bundler Gemfile from your Hoe.spec dependencies"
