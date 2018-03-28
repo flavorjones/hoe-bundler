@@ -4,6 +4,7 @@ require 'rubygems'
 require 'hoe'
 
 Hoe.plugin :git
+Hoe.plugin :gemspec
 
 Hoe.spec 'hoe-bundler' do
   developer('Mike Dalessio', 'mike.dalessio@gmail.com')
@@ -15,6 +16,8 @@ Hoe.spec 'hoe-bundler' do
   self.license "MIT"
 
   extra_dev_deps << ["minitest", "~> 5.11"]
+  extra_dev_deps << ["hoe-git", ">=0"]
+  extra_dev_deps << ["hoe-gemspec", ">=0"]
 end
 
 # vim: syntax=ruby
