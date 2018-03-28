@@ -18,6 +18,11 @@ Hoe.spec 'hoe-bundler' do
   extra_dev_deps << ["minitest", "~> 5.11"]
   extra_dev_deps << ["hoe-git", ">=0"]
   extra_dev_deps << ["hoe-gemspec", ">=0"]
+  extra_dev_deps << ["concourse", "~> 0.18"]
 end
+
+require "concourse"
+
+Concourse.new("hoe-bundler").create_tasks!
 
 # vim: syntax=ruby

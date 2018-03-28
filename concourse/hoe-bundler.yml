@@ -1,0 +1,55 @@
+resources:
+  - name: ci
+    type: git
+    source:
+      uri: https://github.com/flavorjones/hoe-bundler/
+      branch: master
+      disable_ci_skip: true # always get the latest pipeline configuration
+  - name: hoe-bundler
+    type: git
+    source:
+      uri: https://github.com/flavorjones/hoe-bundler/
+      branch: master
+      ignore_paths:
+        - concourse/**
+
+jobs:
+% RUBIES[:mri].last(2).each do |ruby_version|
+  - name: "ruby-<%= ruby_version %>"
+    public: true
+    plan:
+      - get: ci
+      - get: hoe-bundler
+        trigger: true
+      - task: rake-test
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: {repository: ruby, tag: "<%= ruby_version %>"}
+          inputs:
+            - name: ci
+            - name: hoe-bundler
+          run:
+            path: ci/concourse/tasks/rake-test/task.sh
+% end
+
+% RUBIES[:jruby].last(1).each do |jruby_version|
+  - name: "jruby-<%= jruby_version %>"
+    public: true
+    plan:
+      - get: ci
+      - get: hoe-bundler
+        trigger: true
+      - task: rake-test
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: {repository: jruby, tag: "<%= jruby_version %>-jdk"}
+          inputs:
+            - name: ci
+            - name: hoe-bundler
+          run:
+            path: ci/concourse/tasks/rake-test/task.sh
+% end
