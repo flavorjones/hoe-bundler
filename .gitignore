@@ -1,4 +1,5 @@
-Gemfile*
+Gemfile.lock
 doc
-hoe-bundler.gemspec
 pkg
+concourse/private.yml
+concourse/hoe-bundler.final.yml
