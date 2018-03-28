@@ -32,6 +32,7 @@ class TestHoeBundler < Minitest::Test
     Dir.chdir(File.join(File.dirname(__FILE__), "fixture_project")) do
       hoe = Hoe.spec "foo" do
         developer("MCA","mca@example.com")
+        license "fixture license"
         extra_deps << ["yyy", ">=0"]
         extra_deps << ["yyy", ">=1"]
         extra_dev_deps << ["bbb", ">= 1"]
@@ -50,6 +51,7 @@ class TestHoeBundler < Minitest::Test
     Dir.chdir(File.join(File.dirname(__FILE__), "fixture_project")) do
       hoe = Hoe.spec "foo" do
         developer "MCA", "mca@example.com"
+        license "fixture license"
         dependency "foo", [">= 0.8", "< 12.0"]
         dependency "bar", [">= 1.8", "< 3.0"], :dev
       end
