@@ -1,7 +1,8 @@
 .autotest
-CHANGELOG.rdoc
+CHANGELOG.md
+LICENSE
 Manifest.txt
-README.rdoc
+README.md
 Rakefile
 lib/hoe/bundler.rb
 test/fixture_project/Gemfile
