@@ -14,8 +14,7 @@ Hoe.spec 'hoe-bundler' do
   self.test_globs       = ["test/test_*.rb"]
   self.license "MIT"
 
-  extra_deps     << ["hoe", ">=2.2.0"]
-  extra_dev_deps << ["rake", ">=0"]
+  extra_dev_deps << ["minitest", "~> 5.11"]
 end
 
 # vim: syntax=ruby

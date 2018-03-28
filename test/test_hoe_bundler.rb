@@ -1,10 +1,10 @@
-require "test/unit"
+require "minitest/autorun"
 require "fileutils"
 
 require "hoe"
 Hoe.plugin :bundler
 
-class TestHoeBundler < Test::Unit::TestCase
+class TestHoeBundler < Minitest::Test
   def test_output
     gemfile = nil
     Dir.chdir(File.join(File.dirname(__FILE__), "fixture_project")) do
