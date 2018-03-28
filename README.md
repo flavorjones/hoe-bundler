@@ -1,6 +1,8 @@
 # hoe-bundler
 
-* http://github.com/flavorjones/hoe-bundler
+http://github.com/flavorjones/hoe-bundler
+
+[![Concourse CI](https://ci.nokogiri.org/api/v1/teams/nokogiri-core/pipelines/hoe-bundler/jobs/ruby-2.5/badge)](https://ci.nokogiri.org/teams/nokogiri-core/pipelines/hoe-bundler)
 
 
 ## Description
@@ -39,6 +41,11 @@ And then run the following command to generate a Gemfile:
 ## Installation
 
 * gem install hoe-bundler
+
+
+## Related gems
+
+Generate a gem spec using [hoe-gemspec](http://github.com/flavorjones/hoe-gemspec).
 
 
 ## License
