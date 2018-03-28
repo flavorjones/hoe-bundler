@@ -2,7 +2,7 @@
 
 http://github.com/flavorjones/hoe-bundler
 
-[![Concourse CI](https://ci.nokogiri.org/api/v1/teams/nokogiri-core/pipelines/hoe-bundler/jobs/ruby-2.5/badge)](https://ci.nokogiri.org/teams/nokogiri-core/pipelines/hoe-bundler)
+[![Concourse CI](https://ci.nokogiri.org/api/v1/teams/nokogiri-core/pipelines/hoe-bundler/badge)](https://ci.nokogiri.org/teams/nokogiri-core/pipelines/hoe-bundler)
 
 
 ## Description
