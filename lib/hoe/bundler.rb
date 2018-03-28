@@ -41,8 +41,8 @@ class Hoe #:nodoc:
       end
       deps2.each do |name, version|
         output = [%Q{gem "#{name}"}]
-        Array(version).each do |version|
-          output << %Q{"#{version.gsub(/ /,'')}"}
+        Array(version).each do |ver|
+          output << %Q{"#{ver.gsub(/ /,'')}"}
         end
         gemfile.puts %Q{#{output.join(", ")}#{postfix}}
       end
