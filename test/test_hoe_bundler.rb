@@ -90,6 +90,18 @@ class TestHoeBundler < Minitest::Test
     assert_match %r{^source "http:\/\/gems\.github\.com"$}, gemfile
   end
 
+  def test_source_https_option
+    gemfile = nil
+    Dir.chdir(File.join(File.dirname(__FILE__), "fixture_project")) do
+      FileUtils.rm_f "Gemfile"
+      begin
+        system "rake bundler:gemfile[https://gems.github.com]"
+        gemfile = File.read "Gemfile"
+      end
+    end
+    assert_match %r{^source "https:\/\/gems\.github\.com"$}, gemfile
+  end
+
   def test_gemspec_option
     gemfile = nil
     Dir.chdir(File.join(File.dirname(__FILE__), "fixture_project")) do

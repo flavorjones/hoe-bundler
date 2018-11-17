@@ -7,17 +7,23 @@ class Hoe #:nodoc:
   module Bundler
     VERSION = "1.4.0" #:nodoc:
 
+    DEFAULT_SOURCE = 'https://rubygems.org/'
+    DEFAULT_USE_GEMSPEC = false
+
     def define_bundler_tasks
       desc "generate a bundler Gemfile from your Hoe.spec dependencies"
       task "bundler:gemfile", :source, :use_gemspec do |t,args|
-        args.with_defaults(:source => 'https://rubygems.org/', :use_gemspec => false)
+        args.with_defaults(:source => DEFAULT_SOURCE, :use_gemspec => DEFAULT_USE_GEMSPEC)
         File.open("Gemfile","w") do |gemfile|
-          gemfile.print hoe_bundler_contents
+          gemfile.print hoe_bundler_contents(args)
         end
       end
     end
 
-    def hoe_bundler_contents
+    def hoe_bundler_contents(args = {})
+      args[:source] = DEFAULT_SOURCE unless args.has_key?(:source)
+      args[:use_gemspec] = DEFAULT_USE_GEMSPEC unless args.has_key?(:use_gemspec)
+
       gemfile = StringIO.new
       gemfile.puts "# -*- ruby -*-"
       gemfile.puts
