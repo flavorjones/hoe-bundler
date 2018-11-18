@@ -3,6 +3,7 @@ class Hoe #:nodoc:
   #  Rake task to generate a bundler Gemfile based on your declared hoe dependencies.
   #
   #  * <tt>bundler:gemfile</tt>
+  #  * <tt>bundler:gemfile[https://rubygems.org/,false]</tt>
   #
   module Bundler
     VERSION = "1.4.0" #:nodoc:
@@ -33,8 +34,11 @@ class Hoe #:nodoc:
       gemfile.puts "gemspec" if args[:use_gemspec]
       gemfile.puts
 
-      hoe_bundler_add_dependencies(self.extra_deps, gemfile)
-      hoe_bundler_add_dependencies(self.extra_dev_deps, gemfile, ", :group => [:development, :test]")
+      unless args[:use_gemspec]
+        hoe_bundler_add_dependencies(self.extra_deps, gemfile)
+        hoe_bundler_add_dependencies(self.extra_dev_deps, gemfile, ", :group => [:development, :test]")
+      end
+
       gemfile.puts "# vim: syntax=ruby"
 
       gemfile.rewind
