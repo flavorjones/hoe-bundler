@@ -14,7 +14,7 @@ Generate a Gemfile based on a Hoe spec's declared dependencies.
 
 Creates a rake task to generate a bundler Gemfile based on your declared hoe dependencies.
 
-* `bundler:gemfile`
+* `rake bundler:gemfile`
 
 Why would you want to do this? I mean, why would anyone want to use bundler to test their gem?
 
@@ -32,17 +32,25 @@ And then run the following command to generate a Gemfile:
 
     rake bundler:gemfile
 
+
+### Reference a gemspec file
+
 To generate a Gemfile which uses `gemspec` and the default source:
 
     rake bundler:gemfile[,true]
+
+### Use a custom gem source
 
 To generate a Gemfile which uses a custom source:
 
     rake bundler:gemfile[https://gems.github.com]
 
+### Reference a gemspec file and use a custom gem source
+
 Or the combination of custom source and gemspec:
 
     rake bundler:gemfile[https://gems.github.com,true]
+
 
 ## Requirements
 

@@ -6,7 +6,7 @@ class Hoe #:nodoc:
   #  * <tt>bundler:gemfile[https://rubygems.org/,false]</tt>
   #
   module Bundler
-    VERSION = "1.4.0" #:nodoc:
+    VERSION = "1.5.0" #:nodoc:
 
     DEFAULT_SOURCE = 'https://rubygems.org/'
     DEFAULT_USE_GEMSPEC = false

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.0 / 2018-11-17
+
+Enhancements:
+
+* The `bundler:gemfile` rake task accepts optional arguments to specify the gem source, and whether to invoke `gemspec`. (Thanks, @adangel!)
+
+
 ## 1.4.0 / 2018-03-28
 
 Enhancements:
