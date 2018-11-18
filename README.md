@@ -32,6 +32,17 @@ And then run the following command to generate a Gemfile:
 
     rake bundler:gemfile
 
+To generate a Gemfile which uses `gemspec` and the default source:
+
+    rake bundler:gemfile[,true]
+
+To generate a Gemfile which uses a custom source:
+
+    rake bundler:gemfile[https://gems.github.com]
+
+Or the combination of custom source and gemspec:
+
+    rake bundler:gemfile[https://gems.github.com,true]
 
 ## Requirements
 
