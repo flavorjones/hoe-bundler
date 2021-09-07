@@ -11,7 +11,7 @@ gem "zzz", "<1.5.0"
 gem "aaa", ">=0", :group => [:development, :test]
 gem "bbb", ">=2.2.0", :group => [:development, :test]
 gem "ccc", ">=0", :group => [:development, :test]
-gem "rdoc", ">=4.0", "<6", :group => [:development, :test]
-gem "hoe", "~>3.17", :group => [:development, :test]
+gem "rdoc", ">=4.0", "<7", :group => [:development, :test]
+gem "hoe", "~>3.23", :group => [:development, :test]
 
 # vim: syntax=ruby
